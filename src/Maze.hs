@@ -1,7 +1,7 @@
 -- Copyright © 2013 Julian Blake Kongslie <jblake@omgwallhack.org>
 -- Licensed under the MIT license.
 
-{-# LANGUAGE PackageImports #-}
+{-# LANGUAGE TypeFamilies #-}
 
 module Maze
 where
@@ -9,21 +9,13 @@ where
 import Control.Applicative
 import Control.DeepSeq
 import Control.Monad
-import Control.Monad.Logic
 import Control.Monad.Random
 import Control.Monad.State.Strict
 import Data.Array
 import Data.Maybe
-import System.Random
 import System.Random.Shuffle
 
 import Block
-
-instance (MonadRandom m) => MonadRandom (LogicT m) where
-  getRandom = lift getRandom
-  getRandoms = lift getRandoms
-  getRandomR = lift . getRandomR
-  getRandomRs = lift . getRandomRs
 
 instance (MonadRandom m) => MonadRandom (StateT s m) where
   getRandom = lift getRandom
@@ -36,46 +28,57 @@ north (x,y) = (x,y-1)
 south (x,y) = (x,y+1)
 west  (x,y) = (x-1,y)
 
-buildMaze :: (Eq c, NFData c) => c -> (Int, Int) -> [Block c] -> RandT StdGen IO (Map c)
-buildMaze edge (xmax, ymax) bs = fmap fromJust <$> execStateT (observeT buildCell) initMap
+buildMaze :: (Eq c, NFData c, Ord c) => c -> (Int, Int) -> [Block c] -> RandT StdGen IO (Map c)
+buildMaze edge (xmax, ymax) bs = fmap (fromMaybe $ head bs) <$> execStateT (buildCell 0 [(1,1)]) initMap
   where
 
     initMap = listArray ((1, 1), (xmax, ymax)) $ repeat Nothing
 
     getColor s p = do
-      a <- lift get
+      a <- get
       if inRange (bounds a) p
         then case a ! p of
+          Just b  -> return $ \b' -> sideColors b ! s == sideColors b' ! (opposite s)
           Nothing -> return $ const True
-          Just b -> return $ \b' -> sideColors b ! s == sideColors b' ! (opposite s)
         else return $ \b' -> edge == sideColors b' ! (opposite s)
 
-    buildCell = do
+    killCell p x = do
+      m <- get
+      if inRange (bounds m) p
+        then case m ! p of
+          Just _  -> put $ force $ m // [(p, Nothing)]
+          Nothing -> x
+        else x
 
-      m <- lift $ get
+    buildCell _ [] = return ()
+    buildCell n (p:q) = do
 
-      case filter (\p -> isNothing $ m ! p) $ indices m of
-        [] -> return ()
-        (p:_) -> do
+      done <- gets $ \a -> not (inRange (bounds a) p) || isJust (a ! p)
 
-          case p of
-            (x,1) -> liftIO $ putStrLn $ "Approximately " ++ show (round $ (100::Float) * fromIntegral (x-1) / fromIntegral xmax) ++ "% complete."
-            _ -> return ()
+      if done
+        then buildCell n q
+        else do
+
+          when (n == (0 :: Int)) $ do
+            m <- get
+            liftIO $ mapM_ putStrLn $ ppMapMovement $ fmap (fromMaybe $ head bs) m
 
           eastColor  <- getColor West  $ east  p
           northColor <- getColor South $ north p
+          southColor <- getColor North $ south p
+          westColor  <- getColor East  $ west  p
 
-          bs' <- shuffleM $ filter eastColor $ filter northColor bs 
+          bs' <- shuffleM $ filter eastColor $ filter northColor $ filter southColor $ filter westColor bs
+          if length bs' == length bs
+            then buildCell n $ q ++ [p]
+            else case force bs' of
 
-          bs' `deepseq` case bs' of
+              [] -> do
+                modify $ \m -> force $ m // [(p, Nothing)]
+                kills <- shuffleM [east, north, south, west]
+                foldr (\d x -> killCell (d p) x) (return ()) kills
+                buildCell ((n+1) `mod` 1000) $ p : east p : north p : south p : west p : q
 
-            [] -> do
-              liftIO $ putStrLn $ "Backtracking at " ++ show p
-              mzero
-
-            _ -> do
-              b <- msum $ map return bs'
-              m' <- lift $ force <$> gets (// [(p, Just b)])
-              lift $ put m'
-
-          buildCell
+              (b:_) -> do
+                modify $ \m -> force $ m // [(p, Just b)]
+                buildCell ((n+1) `mod` 1000) $ q ++ [east p, north p, south p, west p]

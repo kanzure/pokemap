@@ -4,10 +4,7 @@
 module Main
 where
 
-import Control.Applicative
 import Control.Monad.Random
-import Data.Functor.Identity
-import System.Random
 
 import Block
 import Maze
@@ -19,7 +16,7 @@ main = do
 
   g <- newStdGen
 
-  m <- evalRandT (buildMaze "wall" (400,360) bs) g
+  m <- evalRandT (buildMaze "wall" (360,400) bs) g
 
   mapM_ putStrLn $ ppMapMovement m
   mapM_ putStrLn $ ppMapTiles m

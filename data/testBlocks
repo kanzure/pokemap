@@ -1,3 +1,17 @@
+n:error s:error e:error w:error
+/\
+\/
+XXXX
+X  X
+X  X
+XXXX
+n:xwall s:xwall e:xwall w:xwall
+##
+##
+    
+    
+    
+    
 n:wall s:open e:southopen w:southopen
 ##
 ..
