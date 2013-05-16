@@ -64,7 +64,7 @@ buildMaze edge (xmax, ymax) bs = fmap fromJust <$> execStateT buildCell initMap
 
           bs' <- shuffleM $ filter eastColor $ filter northColor $ filter southColor $ filter westColor bs
 
-          case bs' of
+          bs' `deepseq` case bs' of
 
             [] -> do
               killCell $ east  p
