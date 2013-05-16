@@ -62,6 +62,7 @@ buildMaze edge (xmax, ymax) bs = fmap (fromMaybe $ head bs) <$> execStateT (buil
           when (n == (0 :: Int)) $ do
             m <- get
             liftIO $ mapM_ putStrLn $ ppMapMovement $ fmap (fromMaybe $ head bs) m
+            liftIO $ putStrLn ""
 
           eastColor  <- getColor West  $ east  p
           northColor <- getColor South $ north p
