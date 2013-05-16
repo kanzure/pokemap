@@ -39,8 +39,8 @@ buildMaze edge (xmax, ymax) bs = fmap fromJust <$> execStateT buildCell initMap
     killCell p = do
       a <- get
       if inRange (bounds a) p
-        then return [put $ a // [(p, Nothing)]]
-        else return []
+        then put $ a // [(p, Nothing)]
+        else return ()
 
     buildCell = do
 
@@ -60,14 +60,12 @@ buildMaze edge (xmax, ymax) bs = fmap fromJust <$> execStateT buildCell initMap
           case bs' of
 
             [] -> do
-              killEast  <- killCell $ east  p
-              killNorth <- killCell $ north p
-              killSouth <- killCell $ south p
-              killWest  <- killCell $ west  p
-              kills <- shuffleM $ killEast ++ killNorth ++ killSouth ++ killWest
-              head kills
-              buildCell
+              killCell $ east  p
+              killCell $ north p
+              killCell $ south p
+              killCell $ west  p
 
             (b:_) -> do
               modify $ \m -> m // [(p,Just b)]
-              buildCell
+
+          buildCell
