@@ -7,9 +7,10 @@ module Maze
 where
 
 import Control.Applicative
+import Control.DeepSeq
 import Control.Monad
 import Control.Monad.Random
-import "monads-tf" Control.Monad.State
+import "monads-tf" Control.Monad.State.Strict
 import Data.Array
 import Data.Maybe
 import System.Random
@@ -17,12 +18,18 @@ import System.Random.Shuffle
 
 import Block
 
+instance (MonadRandom m) => MonadRandom (StateT s m) where
+  getRandom = lift getRandom
+  getRandoms = lift getRandoms
+  getRandomR = lift . getRandomR
+  getRandomRs = lift . getRandomRs
+
 east  (x,y) = (x+1,y)
 north (x,y) = (x,y-1)
 south (x,y) = (x,y+1)
 west  (x,y) = (x-1,y)
 
-buildMaze :: (Eq c) => c -> (Int, Int) -> [Block c] -> RandT StdGen IO (Map c)
+buildMaze :: (Eq c, NFData c) => c -> (Int, Int) -> [Block c] -> RandT StdGen IO (Map c)
 buildMaze edge (xmax, ymax) bs = fmap fromJust <$> execStateT buildCell initMap
   where
 
@@ -44,11 +51,11 @@ buildMaze edge (xmax, ymax) bs = fmap fromJust <$> execStateT buildCell initMap
 
     buildCell = do
 
-      as <- gets assocs
+      m <- get
 
-      case filter (\(p,b) -> isNothing b) as of
+      case filter (\p -> isNothing $ m ! p) $ indices m of
         [] -> return ()
-        ((p,_):_) -> do
+        (p:_) -> do
 
           eastColor  <- getColor West  $ east  p
           northColor <- getColor South $ north p
@@ -64,8 +71,11 @@ buildMaze edge (xmax, ymax) bs = fmap fromJust <$> execStateT buildCell initMap
               killCell $ north p
               killCell $ south p
               killCell $ west  p
+              m' <- get
+              m `deepseq` return ()
 
             (b:_) -> do
-              modify $ \m -> m // [(p,Just b)]
+              m' <- gets (// [(p, Just b)])
+              m' `deepseq` put m'
 
           buildCell

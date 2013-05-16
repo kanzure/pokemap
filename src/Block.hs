@@ -7,6 +7,7 @@ module Block
 where
 
 import Control.Applicative
+import Control.DeepSeq
 import Control.Monad
 import Data.Array
 import Data.Char
@@ -23,6 +24,9 @@ data MovementClass
   | BlocksNorthWest
   | BlocksWest
   deriving (Bounded, Enum, Eq, Ord, Read, Show)
+
+instance NFData MovementClass where
+  rnf m = m `seq` ()
 
 parseMovementClass :: (P.Stream s m Char) => P.ParsecT s u m MovementClass
 parseMovementClass = P.choice
@@ -56,6 +60,9 @@ data Side
   = East | North | South | West
   deriving (Bounded, Enum, Eq, Ix, Ord, Read, Show)
 
+instance NFData Side where
+  rnf s = s `seq` ()
+
 opposite :: Side -> Side
 opposite East  = West
 opposite North = South
@@ -68,6 +75,9 @@ data Block c = Block
   , sideColors :: !(Array Side c)
   }
   deriving (Eq, Ord, Read, Show)
+
+instance (NFData c) => NFData (Block c) where
+  rnf b = movementArray b `deepseq` tileArray b `deepseq` sideColors b `deepseq` ()
 
 blockMovementSize :: (Int, Int)
 blockMovementSize = (2, 2)
