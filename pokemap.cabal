@@ -9,6 +9,6 @@ cabal-version: >=1.8
 
 executable pokemap
   main-is: Main.hs
-  build-depends: array, base, deepseq, monads-tf, MonadRandom, parsec, random, random-shuffle, transformers
+  build-depends: array, base, deepseq, logict, monads-tf, MonadRandom, parsec, random, random-shuffle, transformers
   hs-source-dirs: src
-  ghc-options: -fprof-auto -fprof-cafs -rtsopts -threaded
+  ghc-options: -fprof-auto -fprof-cafs -rtsopts

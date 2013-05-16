@@ -4,8 +4,9 @@
 module Main
 where
 
-import Data.Functor.Identity
+import Control.Applicative
 import Control.Monad.Random
+import Data.Functor.Identity
 import System.Random
 
 import Block
