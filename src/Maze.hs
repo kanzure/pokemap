@@ -44,7 +44,7 @@ buildMaze edge (xmax, ymax) bs = fmap fromJust <$> execStateT buildCell initMap
 
     buildCell = do
 
-      as <- gets assocs >>= shuffleM
+      as <- gets assocs
 
       case filter (\(p,b) -> isNothing b) as of
         [] -> return ()
