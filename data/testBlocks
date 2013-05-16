@@ -1,0 +1,133 @@
+n:wall s:open e:southopen w:southopen
+##
+..
+    
+----
+....
+....
+n:open s:wall e:northopen w:northopen
+..
+##
+....
+....
+----
+    
+n:westopen s:westopen e:wall w:open
+.#
+.#
+..| 
+..| 
+..| 
+..| 
+n:eastopen s:eastopen e:open w:wall
+#.
+#.
+ |..
+ |..
+ |..
+ |..
+n:wall s:westopen e:wall w:southopen
+##
+.#
+    
+--\ 
+..| 
+..| 
+n:wall s:eastopen e:southopen w:wall
+##
+#.
+    
+ /--
+ |..
+ |..
+n:westopen s:wall e:wall w:northopen
+.#
+##
+..| 
+..| 
+--/ 
+    
+n:eastopen s:wall e:northopen w:wall
+#.
+##
+ |..
+ |..
+ \--
+    
+n:westopen s:open e:southopen w:open
+.#
+..
+..| 
+..\-
+....
+....
+n:eastopen s:open e:open w:southopen
+#.
+..
+ |..
+-/..
+....
+....
+n:open s:westopen e:northopen w:open
+..
+.#
+....
+....
+../-
+..| 
+n:open s:eastopen e:open w:southopen
+..
+#.
+....
+....
+-\..
+ |..
+n:eastopen s:westopen e:northopen w:southopen
+..
+..
+ /..
+/...
+.../
+../ 
+n:westopen s:eastopen e:southopen w:northopen
+..
+..
+..\ 
+...\
+\...
+ \..
+n:open s:open e:open w:open
+..
+..
+....
+....
+....
+....
+n:open s:housew e:housen w:open
+..
+##
+....
+/^^^
+|===
+|===
+n:open s:housee e:open w:housen
+..
+##
+....
+^^^\
+===|
+===|
+n:housew s:open e:houses w:open
+##
+#.
+|===
+|===
+|=DD
+|=DD
+n:housee s:open e:open w:houses
+##
+##
+===|
+===|
+===|
+===|
