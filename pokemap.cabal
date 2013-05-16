@@ -11,4 +11,4 @@ executable pokemap
   main-is: Main.hs
   build-depends: array, base, deepseq, monads-tf, MonadRandom, parsec, random, random-shuffle, transformers
   hs-source-dirs: src
-  ghc-options: -rtsopts -threaded
+  ghc-options: -fprof-auto -fprof-cafs -rtsopts -threaded
