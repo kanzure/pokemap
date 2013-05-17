@@ -1,6 +1,8 @@
 -- Copyright © 2013 Julian Blake Kongslie <jblake@omgwallhack.org>
 -- Licensed under the MIT license.
 
+{-# OPTIONS_GHC -Wall -Werror #-}
+
 module Main
 where
 
@@ -14,15 +16,21 @@ import System.Environment
 import Block
 import Maze
 
+import Paths_pokemap
+
+filePath :: String -> IO String
+filePath fp | '/' `elem` fp = return fp
+            | otherwise     = getDataFileName fp
+
 main :: IO ()
 main = do
 
   args <- getArgs
 
   (xmax, ymax, blockFile) <- case args of
-    [xstr, ystr, blockFile] -> return (read xstr, read ystr, blockFile)
-    [xstr, ystr]            -> return (read xstr, read ystr, "data/testBlocks")
-    []                      -> return (50,        20,        "data/testBlocks")
+    [xstr, ystr, blockFile] -> filePath blockFile     >>= \f -> return (read xstr, read ystr, f)
+    [xstr, ystr]            -> filePath "test.blocks" >>= \f -> return (read xstr, read ystr, f)
+    []                      -> filePath "test.blocks" >>= \f -> return (50,        20,        f)
     _                       -> fail "Must provide either zero, two, or three arguments!"
 
   bs <- readBlockFile blockFile

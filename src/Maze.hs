@@ -1,6 +1,7 @@
 -- Copyright © 2013 Julian Blake Kongslie <jblake@omgwallhack.org>
 -- Licensed under the MIT license.
 
+{-# OPTIONS_GHC -Wall -Werror -fno-warn-orphans #-}
 {-# LANGUAGE TypeFamilies #-}
 
 module Maze
@@ -24,9 +25,16 @@ instance (MonadRandom m) => MonadRandom (StateT s m) where
   getRandomR = lift . getRandomR
   getRandomRs = lift . getRandomRs
 
+east :: (Int, Int) -> (Int, Int)
 east  (x,y) = (x+1,y)
+
+north :: (Int, Int) -> (Int, Int)
 north (x,y) = (x,y-1)
+
+south :: (Int, Int) -> (Int, Int)
 south (x,y) = (x,y+1)
+
+west :: (Int, Int) -> (Int, Int)
 west  (x,y) = (x-1,y)
 
 buildMaze :: (Eq c, NFData c, Ord c) => Array (Int, Int) (Maybe (Block c)) -> ((Int, Int) -> Side -> [c]) -> [Block c] -> RandT StdGen IO (Map c)

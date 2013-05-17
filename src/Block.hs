@@ -1,6 +1,7 @@
 -- Copyright © 2013 Julian Blake Kongslie <jblake@omgwallhack.org>
 -- Licensed under the MIT license.
 
+{-# OPTIONS_GHC -Wall -Werror #-}
 {-# LANGUAGE FlexibleContexts #-}
 
 module Block
@@ -67,7 +68,7 @@ parseArray parseElement (xmax, ymax) = do
     es <- forM [1..xmax] $ \x -> do
       e <- parseElement
       return ((x, y), e)
-    P.newline
+    _ <- P.newline
     return es
 
   return $ array ((1, 1), (xmax, ymax)) $ concat ess
@@ -97,9 +98,9 @@ parseBlock = do
   let
     parseColor = P.many1 $ P.satisfy $ \c -> not $ isPunctuation c || isSpace c || isSymbol c
     parseSide s = do
-      P.string s
+      _ <- P.string s
       xs <- (P.sepBy1 parseColor (P.char '|')) P.<|> (P.char '*' >> return [])
-      P.many $ P.satisfy $ \c -> c /= '\n' && isSpace c
+      _ <- P.many $ P.satisfy $ \c -> c /= '\n' && isSpace c
       return xs
 
   colorFunc <- P.permute $ mkColorFunc
@@ -108,7 +109,7 @@ parseBlock = do
     P.<||> parseSide "s:"
     P.<||> parseSide "w:"
 
-  P.newline
+  _ <- P.newline
 
   movement <- parseArray parseMovementClass blockMovementSize
   tiles <- parseArray parseTile blockTileSize
