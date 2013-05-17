@@ -716,15 +716,15 @@ n:watersand s:sandwater e:sandwater w:watersand
 ~.
 .~
 ~~..
-~...
-...~
+~~~.
+.~~~
 ..~~
 n:sandwater s:watersand e:watersand w:sandwater
 .~
 ~.
 ..~~
-...~
-~...
+.~~~
+~~~.
 ~~..
 n:rock s:grassdirt e:rockdirt w:rockgrass
 ##
