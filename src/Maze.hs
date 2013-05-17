@@ -12,6 +12,7 @@ import Control.Monad
 import Control.Monad.Random
 import Control.Monad.State.Strict
 import Data.Array
+import Data.List
 import Data.Maybe
 import System.Random.Shuffle
 

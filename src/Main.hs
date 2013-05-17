@@ -4,6 +4,8 @@
 module Main
 where
 
+import Control.Applicative
+import Control.DeepSeq
 import Control.Monad.Random
 import Data.Array
 import Data.List
@@ -43,7 +45,7 @@ main = do
 
   g <- newStdGen
 
-  m <- evalRandT (buildMaze initMap colorM bs) g
+  m <- force <$> evalRandT (buildMaze initMap colorM bs) g
 
   mapM_ putStrLn $ ppMapMovement m
   putStrLn ""
