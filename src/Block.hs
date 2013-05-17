@@ -15,38 +15,13 @@ import Data.Functor.Identity
 import qualified Text.Parsec as P
 import qualified Text.Parsec.Perm as P
 
-data MovementClass
-  = Passable
-  | Impassable
-  | BlocksEast
-  | BlocksNorthEast
-  | BlocksNorth
-  | BlocksNorthWest
-  | BlocksWest
-  deriving (Bounded, Enum, Eq, Ord, Read, Show)
-
-instance NFData MovementClass where
-  rnf m = m `seq` ()
+type MovementClass = Char
 
 parseMovementClass :: (P.Stream s m Char) => P.ParsecT s u m MovementClass
-parseMovementClass = P.choice
-  [ P.char '.'  *> pure Passable
-  , P.char '#'  *> pure Impassable
-  , P.char '>'  *> pure BlocksEast
-  , P.char '/'  *> pure BlocksNorthEast
-  , P.char 'v'  *> pure BlocksNorth
-  , P.char '\\' *> pure BlocksNorthWest
-  , P.char '<'  *> pure BlocksWest
-  ]
+parseMovementClass = P.anyChar
 
 ppMovementClass :: MovementClass -> [String]
-ppMovementClass Passable        = ["."]
-ppMovementClass Impassable      = ["#"]
-ppMovementClass BlocksEast      = [">"]
-ppMovementClass BlocksNorthEast = ["/"]
-ppMovementClass BlocksNorth     = ["v"]
-ppMovementClass BlocksNorthWest = ["\\"]
-ppMovementClass BlocksWest      = ["<"]
+ppMovementClass t = [[t]]
 
 type Tile = Char
 

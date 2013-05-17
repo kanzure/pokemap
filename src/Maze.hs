@@ -28,26 +28,28 @@ north (x,y) = (x,y-1)
 south (x,y) = (x,y+1)
 west  (x,y) = (x-1,y)
 
-buildMaze :: (Eq c, NFData c, Ord c) => c -> (Int, Int) -> [Block c] -> RandT StdGen IO (Map c)
-buildMaze edge (xmax, ymax) bs = fmap (fromMaybe $ head bs) <$> execStateT (buildCell 0 [(1,1)]) initMap
+buildMaze :: (Eq c, NFData c, Ord c) => Array (Int, Int) (Maybe (Block c)) -> ((Int, Int) -> Side -> Maybe c) -> [Block c] -> RandT StdGen IO (Map c)
+buildMaze initMap colorM bs = fmap (fromMaybe $ head bs) <$> execStateT (buildCell 0 $ indices initMap) initMap
   where
 
-    initMap = listArray ((1, 1), (xmax, ymax)) $ repeat Nothing
-
-    getColor s p = do
-      a <- get
-      if inRange (bounds a) p
-        then case a ! p of
-          Just b  -> return $ \b' -> sideColors b ! s == sideColors b' ! (opposite s)
-          Nothing -> return $ const True
-        else return $ \b' -> edge == sideColors b' ! (opposite s)
+    getColor s p = case colorM p s of
+      Just c  -> return $ \b' -> c == sideColors b' ! (opposite s)
+      Nothing -> do
+        a <- get
+        if inRange (bounds a) p
+          then case a ! p of
+            Just b  -> return $ \b' -> sideColors b ! s == sideColors b' ! (opposite s)
+            Nothing -> return $ const True
+          else return $ const True
 
     killCell p x = do
       m <- get
       if inRange (bounds m) p
-        then case m ! p of
-          Just _  -> put $ force $ m // [(p, Nothing)]
-          Nothing -> x
+        then case initMap ! p of
+          Just _  -> x
+          Nothing -> case m ! p of
+            Just _  -> put $ force $ m // [(p, Nothing)]
+            Nothing -> x
         else x
 
     buildCell _ [] = return ()

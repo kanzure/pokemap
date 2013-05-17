@@ -1,147 +1,1148 @@
-n:error s:error e:error w:error
+n:x s:x e:x w:x
 /\
 \/
 XXXX
 X  X
 X  X
 XXXX
-n:wall s:wall e:wall w:wall
+n:xrock s:xrock e:xrock w:xrock
 ##
 ##
     
     
     
     
-n:wall s:open e:southopen w:southopen
-##
+n:grass s:grass e:grass w:grass
+""
+""
+""""
+""""
+""""
+""""
+n:dirt s:dirt e:dirt w:dirt
+  
+  
+    
+    
+    
+    
+n:sand s:sand e:sand w:sand
 ..
+..
+....
+....
+....
+....
+n:water s:water e:water w:water
+~~
+~~
+~~~~
+~~~~
+~~~~
+~~~~
+n:rock s:grass e:rockgrass w:rockgrass
+##
+""
     
 ----
-....
-....
-n:open s:wall e:northopen w:northopen
-..
+""""
+""""
+n:grass s:rock e:grassrock w:grassrock
+""
 ##
-....
-....
+""""
+""""
 ----
     
-n:westopen s:westopen e:wall w:open
-.#
-.#
-..| 
-..| 
-..| 
-..| 
-n:eastopen s:eastopen e:open w:wall
-#.
-#.
- |..
- |..
- |..
- |..
-n:wall s:westopen e:wall w:southopen
+n:grassrock s:grassrock e:rock w:grass
+"#
+"#
+""| 
+""| 
+""| 
+""| 
+n:rockgrass s:rockgrass e:grass w:rock
+#"
+#"
+ |""
+ |""
+ |""
+ |""
+n:grassrock s:rock e:rock w:grassrock
+"#
 ##
-.#
+""| 
+""| 
+--/ 
     
---\ 
-..| 
-..| 
-n:wall s:eastopen e:southopen w:wall
+n:rockgrass s:rock e:grassrock w:rock
+#"
 ##
-#.
+ |""
+ |""
+ \--
+    
+n:rock s:rockgrass e:rockgrass w:rock
+##
+#"
     
  /--
+ |""
+ |""
+n:rock s:grassrock e:rock w:rockgrass
+##
+"#
+    
+--\ 
+""| 
+""| 
+n:rockgrass s:grass e:grass w:rockgrass
+#"
+""
+ /""
+/"""
+""""
+""""
+n:grassrock s:grass e:rockgrass w:grass
+"#
+""
+""\ 
+"""\
+""""
+""""
+n:grass s:grassrock e:grassrock w:grass
+""
+"#
+""""
+""""
+"""/
+""/ 
+n:grass s:rockgrass e:grass w:grassrock
+""
+#"
+""""
+""""
+\"""
+ \""
+n:rockgrass s:grassrock e:grassrock w:rockgrass
+#"
+"#
+ /""
+/"""
+"""/
+""/ 
+n:grassrock s:rockgrass e:rockgrass w:grassrock
+"#
+#"
+""\ 
+"""\
+\"""
+ \""
+n:rock s:dirt e:rockdirt w:rockdirt
+##
+  
+    
+----
+    
+    
+n:dirt s:rock e:dirtrock w:dirtrock
+  
+##
+    
+    
+----
+    
+n:dirtrock s:dirtrock e:rock w:dirt
+ #
+ #
+  | 
+  | 
+  | 
+  | 
+n:rockdirt s:rockdirt e:dirt w:rock
+# 
+# 
+ |  
+ |  
+ |  
+ |  
+n:dirtrock s:rock e:rock w:dirtrock
+ #
+##
+  | 
+  | 
+--/ 
+    
+n:rockdirt s:rock e:dirtrock w:rock
+# 
+##
+ |  
+ |  
+ \--
+    
+n:rock s:rockdirt e:rockdirt w:rock
+##
+# 
+    
+ /--
+ |  
+ |  
+n:rock s:dirtrock e:rock w:rockdirt
+##
+ #
+    
+--\ 
+  | 
+  | 
+n:rockdirt s:dirt e:dirt w:rockdirt
+# 
+  
+ /  
+/   
+    
+    
+n:dirtrock s:dirt e:rockdirt w:dirt
+ #
+  
+  \ 
+   \
+    
+    
+n:dirt s:dirtrock e:dirtrock w:dirt
+  
+ #
+    
+    
+   /
+  / 
+n:dirt s:rockdirt e:dirt w:dirtrock
+  
+# 
+    
+    
+\   
+ \  
+n:rockdirt s:dirtrock e:dirtrock w:rockdirt
+# 
+ #
+ /  
+/   
+   /
+  / 
+n:dirtrock s:rockdirt e:rockdirt w:dirtrock
+ #
+# 
+  \ 
+   \
+\   
+ \  
+n:rock s:sand e:rocksand w:rocksand
+##
+..
+    
+----
+....
+....
+n:sand s:rock e:sandrock w:sandrock
+..
+##
+....
+....
+----
+    
+n:sandrock s:sandrock e:rock w:sand
+.#
+.#
+..| 
+..| 
+..| 
+..| 
+n:rocksand s:rocksand e:sand w:rock
+#.
+#.
  |..
  |..
-n:westopen s:wall e:wall w:northopen
+ |..
+ |..
+n:xsandrock s:xrock e:xrock w:xsandrock
 .#
 ##
 ..| 
 ..| 
 --/ 
     
-n:eastopen s:wall e:northopen w:wall
+n:xrocksand s:xrock e:xsandrock w:xrock
 #.
 ##
  |..
  |..
  \--
     
-n:westopen s:open e:southopen w:open
+n:xrock s:xrocksand e:xrocksand w:xrock
+##
+#.
+    
+ /--
+ |..
+ |..
+n:xrock s:xsandrock e:xrock w:xrocksand
+##
 .#
-..
+    
+--\ 
 ..| 
-..\-
-....
-....
-n:eastopen s:open e:open w:southopen
+..| 
+n:rocksand s:sand e:sand w:rocksand
 #.
 ..
- |..
--/..
+ /..
+/...
 ....
 ....
-n:open s:westopen e:northopen w:open
+n:sandrock s:sand e:rocksand w:sand
+.#
+..
+..\ 
+...\
+....
+....
+n:sand s:sandrock e:sandrock w:sand
 ..
 .#
 ....
 ....
-../-
-..| 
-n:open s:eastopen e:open w:southopen
+.../
+../ 
+n:sand s:rocksand e:sand w:sandrock
 ..
 #.
 ....
 ....
--\..
- |..
-n:eastopen s:westopen e:northopen w:southopen
-..
-..
+\...
+ \..
+n:rocksand s:sandrock e:sandrock w:rocksand
+#.
+.#
  /..
 /...
 .../
 ../ 
-n:westopen s:eastopen e:southopen w:northopen
-..
-..
+n:sandrock s:rocksand e:rocksand w:sandrock
+.#
+#.
 ..\ 
 ...\
 \...
  \..
-n:open s:open e:open w:open
-..
-..
-....
-....
-....
-....
-n:open s:housew e:housen w:open
-..
+n:rock s:water e:rockwater w:rockwater
 ##
-....
-/^^^
-|===
-|===
-n:open s:housee e:open w:housen
+~~
+    
+----
+~~~~
+~~~~
+n:water s:rock e:waterrock w:waterrock
+~~
+##
+~~~~
+~~~~
+----
+    
+n:waterrock s:waterrock e:rock w:water
+~#
+~#
+~~| 
+~~| 
+~~| 
+~~| 
+n:rockwater s:rockwater e:water w:rock
+#~
+#~
+ |~~
+ |~~
+ |~~
+ |~~
+n:waterrock s:rock e:rock w:waterrock
+~#
+##
+~~| 
+~~| 
+--/ 
+    
+n:rockwater s:rock e:waterrock w:rock
+#~
+##
+ |~~
+ |~~
+ \--
+    
+n:rock s:rockwater e:rockwater w:rock
+##
+#~
+    
+ /--
+ |~~
+ |~~
+n:rock s:waterrock e:rock w:rockwater
+##
+~#
+    
+--\ 
+~~| 
+~~| 
+n:rockwater s:water e:water w:rockwater
+#~
+~~
+ /~~
+/~~~
+~~~~
+~~~~
+n:waterrock s:water e:rockwater w:water
+~#
+~~
+~~\ 
+~~~\
+~~~~
+~~~~
+n:water s:waterrock e:waterrock w:water
+~~
+~#
+~~~~
+~~~~
+~~~/
+~~/ 
+n:water s:rockwater e:water w:waterrock
+~~
+#~
+~~~~
+~~~~
+\~~~
+ \~~
+n:rockwater s:waterrock e:waterrock w:rockwater
+#~
+~#
+ /~~
+/~~~
+~~~/
+~~/ 
+n:waterrock s:rockwater e:rockwater w:waterrock
+~#
+#~
+~~\ 
+~~~\
+\~~~
+ \~~
+n:dirt s:grass e:dirtgrass w:dirtgrass
+  
+""
+    
+    
+""""
+""""
+n:grass s:dirt e:grassdirt w:grassdirt
+""
+  
+""""
+""""
+    
+    
+n:grassdirt s:grassdirt e:dirt w:grass
+" 
+" 
+""  
+""  
+""  
+""  
+n:dirtgrass s:dirtgrass e:grass w:dirt
+ "
+ "
+  ""
+  ""
+  ""
+  ""
+n:grassdirt s:dirt e:dirt w:grassdirt
+" 
+  
+""  
+"   
+    
+    
+n:dirtgrass s:dirt e:grassdirt w:dirt
+ "
+  
+  ""
+   "
+    
+    
+n:dirt s:dirtgrass e:dirtgrass w:dirt
+  
+ "
+    
+    
+   "
+  ""
+n:dirt s:grassdirt e:dirt w:dirtgrass
+  
+" 
+    
+    
+"   
+""  
+n:dirtgrass s:grass e:grass w:dirtgrass
+ "
+""
+  ""
+ """
+""""
+""""
+n:grassdirt s:grass e:dirtgrass w:grass
+" 
+""
+""  
+""" 
+""""
+""""
+n:grass s:grassdirt e:grassdirt w:grass
+""
+" 
+""""
+""""
+""" 
+""  
+n:grass s:dirtgrass e:grass w:grassdirt
+""
+ "
+""""
+""""
+ """
+  ""
+n:dirtgrass s:grassdirt e:grassdirt w:dirtgrass
+ "
+" 
+  ""
+ """
+""" 
+""  
+n:grassdirt s:dirtgrass e:dirtgrass w:grassdirt
+" 
+ "
+""  
+""" 
+ """
+  ""
+n:dirt s:sand e:dirtsand w:dirtsand
+  
 ..
-##
+    
+    
 ....
-^^^\
-===|
-===|
-n:housew s:open e:houses w:open
+....
+n:sand s:dirt e:sanddirt w:sanddirt
+..
+  
+....
+....
+    
+    
+n:sanddirt s:sanddirt e:dirt w:sand
+. 
+. 
+..  
+..  
+..  
+..  
+n:dirtsand s:dirtsand e:sand w:dirt
+ .
+ .
+  ..
+  ..
+  ..
+  ..
+n:sanddirt s:dirt e:dirt w:sanddirt
+. 
+  
+..  
+.   
+    
+    
+n:dirtsand s:dirt e:sanddirt w:dirt
+ .
+  
+  ..
+   .
+    
+    
+n:dirt s:dirtsand e:dirtsand w:dirt
+  
+ .
+    
+    
+   .
+  ..
+n:dirt s:sanddirt e:dirt w:dirtsand
+  
+. 
+    
+    
+.   
+..  
+n:dirtsand s:sand e:sand w:dirtsand
+ .
+..
+  ..
+ ...
+....
+....
+n:sanddirt s:sand e:dirtsand w:sand
+. 
+..
+..  
+... 
+....
+....
+n:sand s:sanddirt e:sanddirt w:sand
+..
+. 
+....
+....
+... 
+..  
+n:sand s:dirtsand e:sand w:sanddirt
+..
+ .
+....
+....
+ ...
+  ..
+n:dirtsand s:sanddirt e:sanddirt w:dirtsand
+ .
+. 
+  ..
+ ...
+... 
+..  
+n:sanddirt s:dirtsand e:dirtsand w:sanddirt
+. 
+ .
+..  
+... 
+ ...
+  ..
+n:water s:sand e:watersand w:watersand
+~~
+..
+~~~~
+~~~~
+....
+....
+n:sand s:water e:sandwater w:sandwater
+..
+~~
+....
+....
+~~~~
+~~~~
+n:sandwater s:sandwater e:water w:sand
+.~
+.~
+..~~
+..~~
+..~~
+..~~
+n:watersand s:watersand e:sand w:water
+~.
+~.
+~~..
+~~..
+~~..
+~~..
+n:sandwater s:water e:water w:sandwater
+.~
+~~
+..~~
+.~~~
+~~~~
+~~~~
+n:watersand s:water e:sandwater w:water
+~.
+~~
+~~..
+~~~.
+~~~~
+~~~~
+n:water s:watersand e:watersand w:water
+~~
+~.
+~~~~
+~~~~
+~~~.
+~~..
+n:water s:sandwater e:water w:watersand
+~~
+.~
+~~~~
+~~~~
+.~~~
+..~~
+n:watersand s:sand e:sand w:watersand
+~.
+..
+~~..
+~...
+....
+....
+n:sandwater s:sand e:watersand w:sand
+.~
+..
+..~~
+...~
+....
+....
+n:sand s:sandwater e:sandwater w:sand
+..
+.~
+....
+....
+...~
+..~~
+n:sand s:watersand e:sand w:sandwater
+..
+~.
+....
+....
+~...
+~~..
+n:watersand s:sandwater e:sandwater w:watersand
+~.
+.~
+~~..
+~...
+...~
+..~~
+n:sandwater s:watersand e:watersand w:sandwater
+.~
+~.
+..~~
+...~
+~...
+~~..
+n:rock s:grassdirt e:rockdirt w:rockgrass
 ##
+" 
+    
+----
+""  
+""  
+n:grassdirt s:rock e:dirtrock w:grassrock
+" 
+##
+""  
+""  
+----
+    
+n:grassrock s:dirtrock e:rock w:grassdirt
+"#
+ #
+""| 
+""| 
+  | 
+  | 
+n:rockgrass s:rockdirt e:grassdirt w:rock
+#"
+# 
+ |""
+ |""
+ |  
+ |  
+n:rock s:dirtgrass e:rockgrass w:rockdirt
+##
+ "
+    
+----
+  ""
+  ""
+n:dirtgrass s:rock e:grassrock w:dirtrock
+ "
+##
+  ""
+  ""
+----
+    
+n:dirtrock s:grassrock e:rock w:dirtgrass
+ #
+"#
+  | 
+  | 
+""| 
+""| 
+n:rockdirt s:rockgrass e:dirtgrass w:rock
+# 
+#"
+ |  
+ |  
+ |""
+ |""
+n:rock s:sanddirt e:rockdirt w:rocksand
+##
+. 
+    
+----
+..  
+..  
+n:sanddirt s:rock e:dirtrock w:sandrock
+. 
+##
+..  
+..  
+----
+    
+n:sandrock s:dirtrock e:rock w:sanddirt
+.#
+ #
+..| 
+..| 
+  | 
+  | 
+n:rocksand s:rockdirt e:sanddirt w:rock
 #.
-|===
-|===
-|=DD
-|=DD
-n:housee s:open e:open w:houses
+# 
+ |..
+ |..
+ |  
+ |  
+n:rock s:dirtsand e:rocksand w:rockdirt
 ##
+ .
+    
+----
+  ..
+  ..
+n:dirtsand s:rock e:sandrock w:dirtrock
+ .
 ##
-===|
-===|
-===|
-===|
+  ..
+  ..
+----
+    
+n:dirtrock s:sandrock e:rock w:dirtsand
+ #
+.#
+  | 
+  | 
+..| 
+..| 
+n:rockdirt s:rocksand e:dirtsand w:rock
+# 
+#.
+ |  
+ |  
+ |..
+ |..
+n:rock s:sandwater e:rockwater w:rocksand
+##
+.~
+    
+----
+..~~
+..~~
+n:sandwater s:rock e:waterrock w:sandrock
+.~
+##
+..~~
+..~~
+----
+    
+n:sandrock s:waterrock e:rock w:sandwater
+.#
+~#
+..| 
+..| 
+~~| 
+~~| 
+n:rocksand s:rockwater e:sandwater w:rock
+#.
+#~
+ |..
+ |..
+ |~~
+ |~~
+n:rock s:watersand e:rocksand w:rockwater
+##
+~.
+    
+----
+~~..
+~~..
+n:watersand s:rock e:sandrock w:waterrock
+~.
+##
+~~..
+~~..
+----
+    
+n:waterrock s:sandrock e:rock w:watersand
+~#
+.#
+~~| 
+~~| 
+..| 
+..| 
+n:rockwater s:rocksand e:watersand w:rock
+#~
+#.
+ |~~
+ |~~
+ |..
+ |..
+n:rockgrass s:dirtrock e:grassrock w:rockdirt
+#"
+ #
+ /""
+/"""
+ ""/
+  / 
+n:grassrock s:rockdirt e:rockdirt w:grassrock
+"#
+# 
+""\ 
+"""\
+\"" 
+ \  
+n:rockdirt s:grassrock e:dirtrock w:rockgrass
+# 
+"#
+ /  
+/"" 
+"""/
+""/ 
+n:dirtrock s:rockgrass e:rockgrass w:dirtrock
+ #
+#"
+  \ 
+ ""\
+\"""
+ \""
+n:rocksand s:dirtrock e:sandrock w:rockdirt
+#.
+ #
+ /..
+/...
+ ../
+  / 
+n:sandrock s:rockdirt e:rockdirt w:sandrock
+.#
+# 
+..\ 
+...\
+\.. 
+ \  
+n:rockdirt s:sandrock e:dirtrock w:rocksand
+# 
+.#
+ /  
+/.. 
+.../
+../ 
+n:dirtrock s:rocksand e:rocksand w:dirtrock
+ #
+#.
+  \ 
+ ..\
+\...
+ \..
+n:rocksand s:waterrock e:sandrock w:rockwater
+#.
+~#
+ /..
+/...
+~../
+~~/ 
+n:sandrock s:rockwater e:rockwater w:sandrock
+.#
+#~
+..\ 
+...\
+\..~
+ \~~
+n:rockwater s:sandrock e:waterrock w:rocksand
+#~
+.#
+ /~~
+/..~
+.../
+../ 
+n:waterrock s:rocksand e:rocksand w:waterrock
+~#
+#.
+~~\ 
+~..\
+\...
+ \..
+n:rockgrass s:dirtgrass e:grass w:rockdirt
+#"
+ "
+ |""
+-/""
+ """
+  ""
+n:rockdirt s:grass e:dirtgrass w:rockgrass
+# 
+""
+ |  
+-/" 
+""""
+""""
+n:grassrock s:grassdirt e:rockdirt w:grass
+"#
+" 
+""| 
+""\-
+""" 
+""  
+n:dirtrock s:grass e:rockgrass w:dirtgrass
+ #
+""
+  | 
+ "\-
+""""
+""""
+n:grass s:dirtrock w:grassdirt e:grassrock
+""
+ #
+""""
+""""
+ "/-
+  | 
+n:grassdirt s:grassrock w:grass e:dirtrock
+" 
+"#
+""  
+""" 
+""/-
+""| 
+n:grass s:rockdirt w:grassrock e:grassdirt
+""
+# 
+""""
+""""
+-\" 
+ |  
+n:dirtgrass s:rockgrass w:dirtrock e:grass
+ "
+#"
+  ""
+ """
+-\""
+ |""
+n:rocksand s:dirtsand e:sand w:rockdirt
+#.
+ .
+ |..
+-/..
+ ...
+  ..
+n:rockdirt s:sand e:dirtsand w:rocksand
+# 
+..
+ |  
+-/. 
+....
+....
+n:sandrock s:sanddirt e:rockdirt w:sand
+.#
+. 
+..| 
+..\-
+... 
+..  
+n:dirtrock s:sand e:rocksand w:dirtsand
+ #
+..
+  | 
+ .\-
+....
+....
+n:sand s:dirtrock w:sanddirt e:sandrock
+..
+ #
+....
+....
+ ./-
+  | 
+n:sanddirt s:sandrock w:sand e:dirtrock
+. 
+.#
+..  
+... 
+../-
+..| 
+n:sand s:rockdirt w:sandrock e:sanddirt
+..
+# 
+....
+....
+-\. 
+ |  
+n:dirtsand s:rocksand w:dirtrock e:sand
+ .
+#.
+  ..
+ ...
+-\..
+ |..
+n:rocksand s:watersand e:sand w:rockwater
+#.
+~.
+ |..
+-/..
+~...
+~~..
+n:rockwater s:sand e:watersand w:rocksand
+#~
+..
+ |~~
+-/.~
+....
+....
+n:sandrock s:sandwater e:rockwater w:sand
+.#
+.~
+..| 
+..\-
+...~
+..~~
+n:waterrock s:sand e:rocksand w:watersand
+~#
+..
+~~| 
+~.\-
+....
+....
+n:sand s:waterrock w:sandwater e:sandrock
+..
+~#
+....
+....
+~./-
+~~| 
+n:sandwater s:sandrock w:sand e:waterrock
+.~
+.#
+..~~
+...~
+../-
+..| 
+n:sand s:rockwater w:sandrock e:sandwater
+..
+#~
+....
+....
+-\.~
+ |~~
+n:watersand s:rocksand w:waterrock e:sand
+~.
+#.
+~~..
+~...
+-\..
+ |..
