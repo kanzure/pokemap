@@ -28,19 +28,19 @@ north (x,y) = (x,y-1)
 south (x,y) = (x,y+1)
 west  (x,y) = (x-1,y)
 
-buildMaze :: (Eq c, NFData c, Ord c) => Array (Int, Int) (Maybe (Block c)) -> ((Int, Int) -> Side -> Maybe c) -> [Block c] -> RandT StdGen IO (Map c)
+buildMaze :: (Eq c, NFData c, Ord c) => Array (Int, Int) (Maybe (Block c)) -> ((Int, Int) -> Side -> [c]) -> [Block c] -> RandT StdGen IO (Map c)
 buildMaze initMap colorM bs = fmap (fromMaybe $ head bs) <$> execStateT (buildCell 0 $ indices initMap) initMap
   where
 
     getColor s p = case colorM p s of
-      Just c  -> return $ \b' -> c == sideColors b' ! (opposite s)
-      Nothing -> do
+      [] -> do
         a <- get
         if inRange (bounds a) p
           then case a ! p of
-            Just b  -> return $ \b' -> sideColors b ! s == sideColors b' ! (opposite s)
+            Just b  -> return $ \b' -> sideColors b ! s == [] || sideColors b' ! (opposite s) == [] || or [ c == c' | c <- sideColors b ! s, c' <-  sideColors b' ! (opposite s) ]
             Nothing -> return $ const True
           else return $ const True
+      cs -> return $ \b' -> sideColors b' ! (opposite s) == [] || or [ c == c' | c <- cs, c' <- sideColors b' ! (opposite s) ]
 
     killCell p x = do
       m <- get
@@ -80,8 +80,8 @@ buildMaze initMap colorM bs = fmap (fromMaybe $ head bs) <$> execStateT (buildCe
                 modify $ \m -> force $ m // [(p, Nothing)]
                 kills <- shuffleM [east, north, south, west]
                 foldr (\d x -> killCell (d p) x) (return ()) kills
-                buildCell ((n+1) `mod` 1000) $ p : east p : north p : south p : west p : q
+                buildCell ((n+1) `mod` 100) $ p : east p : north p : south p : west p : q
 
               (b:_) -> do
                 modify $ \m -> force $ m // [(p, Just b)]
-                buildCell ((n+1) `mod` 1000) $ q ++ [east p, north p, south p, west p]
+                buildCell ((n+1) `mod` 100) $ q ++ [east p, north p, south p, west p]

@@ -1,17 +1,10 @@
 n:x s:x e:x w:x
-/\
-\/
-XXXX
-X  X
-X  X
-XXXX
-n:xrock s:xrock e:xrock w:xrock
-##
-##
-    
-    
-    
-    
+??
+??
+????
+?  ?
+?  ?
+????
 n:grass s:grass e:grass w:grass
 ""
 ""
@@ -264,34 +257,6 @@ n:rocksand s:rocksand e:sand w:rock
  |..
  |..
  |..
-n:xsandrock s:xrock e:xrock w:xsandrock
-.#
-##
-..| 
-..| 
---/ 
-    
-n:xrocksand s:xrock e:xsandrock w:xrock
-#.
-##
- |..
- |..
- \--
-    
-n:xrock s:xrocksand e:xrocksand w:xrock
-##
-#.
-    
- /--
- |..
- |..
-n:xrock s:xsandrock e:xrock w:xrocksand
-##
-.#
-    
---\ 
-..| 
-..| 
 n:rocksand s:sand e:sand w:rocksand
 #.
 ..
@@ -334,104 +299,6 @@ n:sandrock s:rocksand e:rocksand w:sandrock
 ...\
 \...
  \..
-n:xrock s:xwater e:xrockwater w:xrockwater
-##
-~~
-    
-----
-~~~~
-~~~~
-n:xwater s:xrock e:xwaterrock w:xwaterrock
-~~
-##
-~~~~
-~~~~
-----
-    
-n:xwaterrock s:xwaterrock e:xrock w:xwater
-~#
-~#
-~~| 
-~~| 
-~~| 
-~~| 
-n:xrockwater s:xrockwater e:xwater w:xrock
-#~
-#~
- |~~
- |~~
- |~~
- |~~
-n:xwaterrock s:xrock e:xrock w:xwaterrock
-~#
-##
-~~| 
-~~| 
---/ 
-    
-n:xrockwater s:xrock e:xwaterrock w:xrock
-#~
-##
- |~~
- |~~
- \--
-    
-n:xrock s:xrockwater e:xrockwater w:xrock
-##
-#~
-    
- /--
- |~~
- |~~
-n:xrock s:xwaterrock e:xrock w:xrockwater
-##
-~#
-    
---\ 
-~~| 
-~~| 
-n:xrockwater s:xwater e:xwater w:xrockwater
-#~
-~~
- /~~
-/~~~
-~~~~
-~~~~
-n:xwaterrock s:xwater e:xrockwater w:xwater
-~#
-~~
-~~\ 
-~~~\
-~~~~
-~~~~
-n:xwater s:xwaterrock e:xwaterrock w:xwater
-~~
-~#
-~~~~
-~~~~
-~~~/
-~~/ 
-n:xwater s:xrockwater e:xwater w:xwaterrock
-~~
-#~
-~~~~
-~~~~
-\~~~
- \~~
-n:xrockwater s:xwaterrock e:xwaterrock w:xrockwater
-#~
-~#
- /~~
-/~~~
-~~~/
-~~/ 
-n:xwaterrock s:xrockwater e:xrockwater w:xwaterrock
-~#
-#~
-~~\ 
-~~~\
-\~~~
- \~~
 n:dirt s:grass e:dirtgrass w:dirtgrass
   
 ""
@@ -838,62 +705,6 @@ n:rockdirt s:rocksand e:dirtsand w:rock
  |  
  |..
  |..
-n:xrock s:xsandwater e:xrockwater w:xrocksand
-##
-.~
-    
-----
-..~~
-..~~
-n:xsandwater s:xrock e:xwaterrock w:xsandrock
-.~
-##
-..~~
-..~~
-----
-    
-n:xsandrock s:xwaterrock e:xrock w:xsandwater
-.#
-~#
-..| 
-..| 
-~~| 
-~~| 
-n:xrocksand s:xrockwater e:xsandwater w:xrock
-#.
-#~
- |..
- |..
- |~~
- |~~
-n:xrock s:xwatersand e:xrocksand w:xrockwater
-##
-~.
-    
-----
-~~..
-~~..
-n:xwatersand s:xrock e:xsandrock w:xwaterrock
-~.
-##
-~~..
-~~..
-----
-    
-n:xwaterrock s:xsandrock e:xrock w:xwatersand
-~#
-.#
-~~| 
-~~| 
-..| 
-..| 
-n:xrockwater s:xrocksand e:xwatersand w:xrock
-#~
-#.
- |~~
- |~~
- |..
- |..
 n:rockgrass s:dirtrock e:grassrock w:rockdirt
 #"
  #
@@ -948,34 +759,6 @@ n:dirtrock s:rocksand e:rocksand w:dirtrock
 #.
   \ 
  ..\
-\...
- \..
-n:xrocksand s:xwaterrock e:xsandrock w:xrockwater
-#.
-~#
- /..
-/...
-~../
-~~/ 
-n:xsandrock s:xrockwater e:xrockwater w:xsandrock
-.#
-#~
-..\ 
-...\
-\..~
- \~~
-n:xrockwater s:xsandrock e:xwaterrock w:xrocksand
-#~
-.#
- /~~
-/..~
-.../
-../ 
-n:xwaterrock s:xrocksand e:xrocksand w:xwaterrock
-~#
-#.
-~~\ 
-~..\
 \...
  \..
 n:rockgrass s:dirtgrass e:grass w:rockdirt
@@ -1090,59 +873,122 @@ n:dirtsand s:rocksand w:dirtrock e:sand
  ...
 -\..
  |..
-n:xrocksand s:xwatersand e:xsand w:xrockwater
-#.
-~.
- |..
--/..
-~...
-~~..
-n:xrockwater s:xsand e:xwatersand w:xrocksand
-#~
+n:road s:grass|grassdirt|dirtgrass|dirt w:grass|grassdirt|dirtgrass|dirt e:grass|grassdirt|dirtgrass|dirt
+\/
+  
+ == 
+ == 
+    
+    
+n:road s:road w:grass|grassdirt|dirtgrass|dirt e:grass|grassdirt|dirtgrass|dirt
+||
+||
+ == 
+ == 
+ == 
+ == 
+n:grass|grassdirt|dirtgrass|dirt s:grass|grassdirt|dirtgrass|dirt w:road e:road
+--
+--
+    
+====
+====
+    
+n:road s:grass|grassdirt|dirtgrass|dirt w:road e:grass|grassdirt|dirtgrass|dirt
+/|
+-/
+ == 
+=== 
+=== 
+    
+n:road s:grass|grassdirt|dirtgrass|dirt w:grass|grassdirt|dirtgrass|dirt e:road
+|\
+\-
+ == 
+ ===
+ ===
+    
+n:road s:grass|grassdirt|dirtgrass|dirt w:road e:road
+/\
+--
+ == 
+====
+====
+    
+n:road s:road w:road e:grass|grassdirt|dirtgrass|dirt
+/|
+\|
+ == 
+=== 
+=== 
+ == 
+n:grass s:housewest w:grass|grassdirt e:grasshouse
+""
+"H
+""""
+""""
+/#^#
+|###
+n:grass s:houseeast w:grasshouse e:grass|grassdirt
+""
+H"
+""""
+""""
+###\
+###|
+n:dirt s:housewest w:dirt|dirtgrass|dirtsand e:dirthouse
+  
+ H
+    
+    
+/#^#
+|###
+n:dirt s:houseeast w:dirthouse e:dirt|dirtgrass|dirtsand
+  
+H 
+    
+    
+###\
+###|
+n:sand s:housewest w:sand|sanddirt e:sandhouse
 ..
- |~~
--/.~
+.H
 ....
 ....
-n:xsandrock s:xsandwater e:xrockwater w:xsand
-.#
-.~
-..| 
-..\-
-...~
-..~~
-n:xwaterrock s:xsand e:xrocksand w:xwatersand
-~#
+/#^#
+|###
+n:sand s:houseeast w:sandhouse e:sand|sanddirt
 ..
-~~| 
-~.\-
+H.
 ....
 ....
-n:xsand s:xwaterrock w:xsandwater e:xsandrock
-..
-~#
-....
-....
-~./-
-~~| 
-n:xsandwater s:xsandrock w:xsand e:xwaterrock
-.~
-.#
-..~~
-...~
-../-
-..| 
-n:xsand s:xrockwater w:xsandrock e:xsandwater
-..
-#~
-....
-....
--\.~
- |~~
-n:xwatersand s:xrocksand w:xwaterrock e:xsand
-~.
-#.
-~~..
-~...
--\..
- |..
+###\
+###|
+n:houseeast s:dirt w:housesouth e:grassdirt|dirt|sanddirt
+HH
+  
+###|
+###|
+    
+    
+n:houseeast s:dirt w:housesouth e:grassdirt|dirt|sanddirt
+HH
+  
+###|
+M##|
+    
+    
+n:houseeast s:dirt w:housesouth e:grassdirt|dirt|sanddirt
+HH
+  
+###|
+P##|
+    
+    
+n:housewest s:road w:grassdirt|dirt|sanddirt e:housesouth
+HD
+$$
+|###
+|#=#
+ == 
+ == 

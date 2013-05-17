@@ -6,6 +6,7 @@ where
 
 import Control.Monad.Random
 import Data.Array
+import Data.List
 import System.Environment
 
 import Block
@@ -26,13 +27,19 @@ main = do
 
   putStrLn $ show (length bs) ++ " blocks loaded."
 
+  let colors = nub $ concatMap (concat . elems . sideColors) bs
+
+  putStrLn $ show (length colors) ++ " colors defined: " ++ show colors
+
   let
 
     initMap = listArray ((1,1),(xmax,ymax)) $ repeat Nothing
 
-    colorM (x, _) West | x == xmax + 1 = Just "rock"
-    colorM (0, _) East                 = Just "water"
-    colorM _      _                    = Nothing
+    colorM (x, _) West  | x == xmax + 1 = ["rock"]
+    colorM (0, _) East                  = ["water"]
+    colorM (_, y) North | y == ymax + 1 = ["water", "watersand", "sandwater", "sand", "sanddirt", "dirtsand", "dirt", "dirtgrass", "grassdirt", "grass", "rock", "rockgrass", "grassrock", "rockdirt", "dirtrock", "rocksand", "sandrock"]
+    colorM (_, 0) South                 = ["water", "watersand", "sandwater", "sand", "sanddirt", "dirtsand", "dirt", "dirtgrass", "grassdirt", "grass", "rock", "rockgrass", "grassrock", "rockdirt", "dirtrock", "rocksand", "sandrock"]
+    colorM _      _                     = []
 
   g <- newStdGen
 

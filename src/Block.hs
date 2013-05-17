@@ -47,7 +47,7 @@ opposite West  = East
 data Block c = Block
   { movementArray :: !(Array (Int, Int) MovementClass)
   , tileArray :: !(Array (Int, Int) Tile)
-  , sideColors :: !(Array Side c)
+  , sideColors :: !(Array Side [c])
   }
   deriving (Eq, Ord, Read, Show)
 
@@ -95,11 +95,12 @@ parseBlock :: (P.Stream s Identity Char) => P.ParsecT s u Identity (Block String
 parseBlock = do
 
   let
+    parseColor = P.many1 $ P.satisfy $ \c -> not $ isPunctuation c || isSpace c || isSymbol c
     parseSide s = do
       P.string s
-      x <- P.many $ P.satisfy $ not . isSpace
+      xs <- (P.sepBy1 parseColor (P.char '|')) P.<|> (P.char '*' >> return [])
       P.many $ P.satisfy $ \c -> c /= '\n' && isSpace c
-      return x
+      return xs
 
   colorFunc <- P.permute $ mkColorFunc
     P.<$$> parseSide "e:"
