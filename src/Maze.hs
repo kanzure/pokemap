@@ -62,6 +62,8 @@ buildMaze initMap colorM bs = fmap (fromMaybe $ head bs) <$> execStateT (buildCe
         then buildCell n q
         else do
 
+          let q' = if n == 0 then force $ nub q else q
+
           when (n == (0 :: Int)) $ do
             m <- get
             liftIO $ mapM_ putStrLn $ ppMapMovement $ fmap (fromMaybe $ head bs) m
@@ -74,15 +76,15 @@ buildMaze initMap colorM bs = fmap (fromMaybe $ head bs) <$> execStateT (buildCe
 
           bs' <- shuffleM $ filter eastColor $ filter northColor $ filter southColor $ filter westColor bs
           if length bs' == length bs
-            then buildCell n $ q ++ [p]
+            then buildCell n $ q' ++ [p]
             else case force bs' of
 
               [] -> do
                 modify $ \m -> force $ m // [(p, Nothing)]
                 kills <- shuffleM [east, north, south, west]
                 foldr (\d x -> killCell (d p) x) (return ()) kills
-                buildCell ((n+1) `mod` 100) $ p : east p : north p : south p : west p : q
+                buildCell ((n+1) `mod` 100) $ p : east p : north p : south p : west p : q'
 
               (b:_) -> do
                 modify $ \m -> force $ m // [(p, Just b)]
-                buildCell ((n+1) `mod` 100) $ q ++ [east p, north p, south p, west p]
+                buildCell ((n+1) `mod` 100) $ q' ++ [east p, north p, south p, west p]
