@@ -334,98 +334,98 @@ n:sandrock s:rocksand e:rocksand w:sandrock
 ...\
 \...
  \..
-n:rock s:water e:rockwater w:rockwater
+n:xrock s:xwater e:xrockwater w:xrockwater
 ##
 ~~
     
 ----
 ~~~~
 ~~~~
-n:water s:rock e:waterrock w:waterrock
+n:xwater s:xrock e:xwaterrock w:xwaterrock
 ~~
 ##
 ~~~~
 ~~~~
 ----
     
-n:waterrock s:waterrock e:rock w:water
+n:xwaterrock s:xwaterrock e:xrock w:xwater
 ~#
 ~#
 ~~| 
 ~~| 
 ~~| 
 ~~| 
-n:rockwater s:rockwater e:water w:rock
+n:xrockwater s:xrockwater e:xwater w:xrock
 #~
 #~
  |~~
  |~~
  |~~
  |~~
-n:waterrock s:rock e:rock w:waterrock
+n:xwaterrock s:xrock e:xrock w:xwaterrock
 ~#
 ##
 ~~| 
 ~~| 
 --/ 
     
-n:rockwater s:rock e:waterrock w:rock
+n:xrockwater s:xrock e:xwaterrock w:xrock
 #~
 ##
  |~~
  |~~
  \--
     
-n:rock s:rockwater e:rockwater w:rock
+n:xrock s:xrockwater e:xrockwater w:xrock
 ##
 #~
     
  /--
  |~~
  |~~
-n:rock s:waterrock e:rock w:rockwater
+n:xrock s:xwaterrock e:xrock w:xrockwater
 ##
 ~#
     
 --\ 
 ~~| 
 ~~| 
-n:rockwater s:water e:water w:rockwater
+n:xrockwater s:xwater e:xwater w:xrockwater
 #~
 ~~
  /~~
 /~~~
 ~~~~
 ~~~~
-n:waterrock s:water e:rockwater w:water
+n:xwaterrock s:xwater e:xrockwater w:xwater
 ~#
 ~~
 ~~\ 
 ~~~\
 ~~~~
 ~~~~
-n:water s:waterrock e:waterrock w:water
+n:xwater s:xwaterrock e:xwaterrock w:xwater
 ~~
 ~#
 ~~~~
 ~~~~
 ~~~/
 ~~/ 
-n:water s:rockwater e:water w:waterrock
+n:xwater s:xrockwater e:xwater w:xwaterrock
 ~~
 #~
 ~~~~
 ~~~~
 \~~~
  \~~
-n:rockwater s:waterrock e:waterrock w:rockwater
+n:xrockwater s:xwaterrock e:xwaterrock w:xrockwater
 #~
 ~#
  /~~
 /~~~
 ~~~/
 ~~/ 
-n:waterrock s:rockwater e:rockwater w:waterrock
+n:xwaterrock s:xrockwater e:xrockwater w:xwaterrock
 ~#
 #~
 ~~\ 
@@ -838,56 +838,56 @@ n:rockdirt s:rocksand e:dirtsand w:rock
  |  
  |..
  |..
-n:rock s:sandwater e:rockwater w:rocksand
+n:xrock s:xsandwater e:xrockwater w:xrocksand
 ##
 .~
     
 ----
 ..~~
 ..~~
-n:sandwater s:rock e:waterrock w:sandrock
+n:xsandwater s:xrock e:xwaterrock w:xsandrock
 .~
 ##
 ..~~
 ..~~
 ----
     
-n:sandrock s:waterrock e:rock w:sandwater
+n:xsandrock s:xwaterrock e:xrock w:xsandwater
 .#
 ~#
 ..| 
 ..| 
 ~~| 
 ~~| 
-n:rocksand s:rockwater e:sandwater w:rock
+n:xrocksand s:xrockwater e:xsandwater w:xrock
 #.
 #~
  |..
  |..
  |~~
  |~~
-n:rock s:watersand e:rocksand w:rockwater
+n:xrock s:xwatersand e:xrocksand w:xrockwater
 ##
 ~.
     
 ----
 ~~..
 ~~..
-n:watersand s:rock e:sandrock w:waterrock
+n:xwatersand s:xrock e:xsandrock w:xwaterrock
 ~.
 ##
 ~~..
 ~~..
 ----
     
-n:waterrock s:sandrock e:rock w:watersand
+n:xwaterrock s:xsandrock e:xrock w:xwatersand
 ~#
 .#
 ~~| 
 ~~| 
 ..| 
 ..| 
-n:rockwater s:rocksand e:watersand w:rock
+n:xrockwater s:xrocksand e:xwatersand w:xrock
 #~
 #.
  |~~
@@ -950,28 +950,28 @@ n:dirtrock s:rocksand e:rocksand w:dirtrock
  ..\
 \...
  \..
-n:rocksand s:waterrock e:sandrock w:rockwater
+n:xrocksand s:xwaterrock e:xsandrock w:xrockwater
 #.
 ~#
  /..
 /...
 ~../
 ~~/ 
-n:sandrock s:rockwater e:rockwater w:sandrock
+n:xsandrock s:xrockwater e:xrockwater w:xsandrock
 .#
 #~
 ..\ 
 ...\
 \..~
  \~~
-n:rockwater s:sandrock e:waterrock w:rocksand
+n:xrockwater s:xsandrock e:xwaterrock w:xrocksand
 #~
 .#
  /~~
 /..~
 .../
 ../ 
-n:waterrock s:rocksand e:rocksand w:waterrock
+n:xwaterrock s:xrocksand e:xrocksand w:xwaterrock
 ~#
 #.
 ~~\ 
@@ -1090,56 +1090,56 @@ n:dirtsand s:rocksand w:dirtrock e:sand
  ...
 -\..
  |..
-n:rocksand s:watersand e:sand w:rockwater
+n:xrocksand s:xwatersand e:xsand w:xrockwater
 #.
 ~.
  |..
 -/..
 ~...
 ~~..
-n:rockwater s:sand e:watersand w:rocksand
+n:xrockwater s:xsand e:xwatersand w:xrocksand
 #~
 ..
  |~~
 -/.~
 ....
 ....
-n:sandrock s:sandwater e:rockwater w:sand
+n:xsandrock s:xsandwater e:xrockwater w:xsand
 .#
 .~
 ..| 
 ..\-
 ...~
 ..~~
-n:waterrock s:sand e:rocksand w:watersand
+n:xwaterrock s:xsand e:xrocksand w:xwatersand
 ~#
 ..
 ~~| 
 ~.\-
 ....
 ....
-n:sand s:waterrock w:sandwater e:sandrock
+n:xsand s:xwaterrock w:xsandwater e:xsandrock
 ..
 ~#
 ....
 ....
 ~./-
 ~~| 
-n:sandwater s:sandrock w:sand e:waterrock
+n:xsandwater s:xsandrock w:xsand e:xwaterrock
 .~
 .#
 ..~~
 ...~
 ../-
 ..| 
-n:sand s:rockwater w:sandrock e:sandwater
+n:xsand s:xrockwater w:xsandrock e:xsandwater
 ..
 #~
 ....
 ....
 -\.~
  |~~
-n:watersand s:rocksand w:waterrock e:sand
+n:xwatersand s:xrocksand w:xwaterrock e:xsand
 ~.
 #.
 ~~..
