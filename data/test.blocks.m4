@@ -114,8 +114,8 @@ We have 40 blocks left over for special stuff, before we have to start sacrifici
 I've allocated the corner down near 0xee for a 4-block house, and 0x06 as a cave, as examples of special blocks.
 The unallocated space remaining on that map totals 35 blocks.
 
-define( `house', 0xee )
-define( `cave',  0x06 )
+define(`house', 0xee)
+define(`cave',  0x06)
 
 Solid blocks.
 
