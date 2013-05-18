@@ -53,7 +53,7 @@ define(`backslash', 0x0d) Two terrains, diagonal, lower on southeast and northwe
 
 For double-terrain interactions, use offset+interaction.
 
-This gives us a block map that looks like thisouth:
+This gives us a block map that looks like this:
 
       0x_0  0x_1  0x_2  0x_3  0x_4  0x_5  0x_6  0x_7  0x_8  0x_9  0x_a  0x_b  0x_c  0x_d  0x_e  0x_f
      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
@@ -105,8 +105,8 @@ This gives us a block map that looks like thisouth:
 0xf_ |SAND-TREES INTERACTIONS                                                            |           |
      |                                                                                   |           |
      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
-      north south east  west  inner                   outer                   slash back
-                              ne    se    nw    sw    ne    se    nw    sw          slash
+      vert  vert  horiz horiz inner                   outer                   slash back
+      north south east  west  ne    se    nw    sw    ne    se    nw    sw          slash
 
 This layout is reasonably organized, and gives us a complete set of two-terrain interaction blocks.
 We have 40 blocks left over for special stuff, before we have to start sacrificing interactions.
@@ -119,7 +119,7 @@ block index:`eval($1)' north:``$1'' south:``$1'' east:``$1'' west:``$1'')
 Double-terrain interactions.
 For these macros, I expect the lower terrain type to be the earlier parameter.
 
-In this blockset, I use the following convention for edge namesouth:
+In this blockset, I use the following convention for edge names:
   If an edge is entirely one terrain, it is named for that terrain.
   If an edge is multiple terrains, they are concatenated in order:
     For vertical edges, from north to south.
