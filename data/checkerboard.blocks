@@ -1,0 +1,2 @@
+block 0 n:white s:black e:white w:black
+block 1 n:black s:white e:black w:white

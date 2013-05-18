@@ -1,8 +1,12 @@
 author: Julian Blake Kongslie
-build-type: Simple
+build-type: Custom
 cabal-version: >=1.8
 data-dir: data
-data-files: *.blocks
+data-files:
+  *.blocks
+extra-source-files:
+  data/Makefile
+  data/*.blocks.m4
 license-file: LICENSE
 license: MIT
 maintainer: jblake@omgwallhack.org
