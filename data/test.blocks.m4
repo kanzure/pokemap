@@ -57,8 +57,8 @@ This gives us a block map that looks like this:
 
       0x_0  0x_1  0x_2  0x_3  0x_4  0x_5  0x_6  0x_7  0x_8  0x_9  0x_a  0x_b  0x_c  0x_d  0x_e  0x_f
      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
-0x0_ |SOLID|SOLID|SOLID|SOLID|SOLID|SOLID|                                                           |
-     |ROCK |DIRT |GRASS|WATER|SAND |TREES|                                                           |
+0x0_ |SOLID|SOLID|SOLID|SOLID|SOLID|SOLID|CAVE |                                                     |
+     |ROCK |DIRT |GRASS|WATER|SAND |TREES|     |                                                     |
      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+           +
 0x1_ |ROCK-DIRT INTERACTIONS                                                             |           |
      |                                                                                   |           |
@@ -98,8 +98,8 @@ This gives us a block map that looks like this:
      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+           +
 0xd_ |GRASS-TREES INTERACTIONS                                                           |           |
      |                                                                                   |           |
-     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+           +
-0xe_ |WATER-TREES INTERACTIONS                                                           |           |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+0xe_ |WATER-TREES INTERACTIONS                                                           |HOUSE      |
      |                                                                                   |           |
      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+           +
 0xf_ |SAND-TREES INTERACTIONS                                                            |           |
@@ -111,9 +111,15 @@ This gives us a block map that looks like this:
 This layout is reasonably organized, and gives us a complete set of two-terrain interaction blocks.
 We have 40 blocks left over for special stuff, before we have to start sacrificing interactions.
 
+I've allocated the corner down near 0xee for a 4-block house, and 0x06 as a cave, as examples of special blocks.
+The unallocated space remaining on that map totals 35 blocks.
+
+define( `house', 0xee )
+define( `cave',  0x06 )
+
 Solid blocks.
 
-define( solid,
+define( `solid',
 block index:`eval($1)' north:``$1'' south:``$1'' east:``$1'' west:``$1'')
 
 Double-terrain interactions.
@@ -127,23 +133,23 @@ In this blockset, I use the following convention for edge names:
 
 Horizontal/vertical interactions.
 
-define( verticals,
+define( `verticals',
 block index:`eval($1$2+vertnorth)' north:``$1'' south:``$2'' east:``$1$2'' west:``$1$2''
 block index:`eval($1$2+vertsouth)' north:``$2'' south:``$1'' east:``$2$1'' west:``$2$1'')
 
-define( horizontals,
+define( `horizontals',
 block index:`eval($1$2+horizeast)' north:``$2$1'' south:``$2$1'' east:``$1'' west:``$2''
 block index:`eval($1$2+horizwest)' north:``$1$2'' south:``$1$2'' east:``$2'' west:``$1'')
 
 Corners.
 
-define( innercorners,
+define( `innercorners',
 block index:`eval($1$2+innerne)' north:``$2$1'' south:``$2'' east:``$1$2'' west:``$2''
 block index:`eval($1$2+innerse)' north:``$2'' south:``$2$1'' east:``$2$1'' west:``$2''
 block index:`eval($1$2+innernw)' north:``$1$2'' south:``$2'' east:``$2'' west:``$1$2''
 block index:`eval($1$2+innersw)' north:``$2'' south:``$1$2'' east:``$2'' west:``$2$1'')
 
-define( outercorners,
+define( `outercorners',
 block index:`eval($1$2+outerne)' north:``$1$2'' south:``$1'' east:``$2$1'' west:``$1''
 block index:`eval($1$2+outerse)' north:``$1'' south:``$1$2'' east:``$1$2'' west:``$1''
 block index:`eval($1$2+outernw)' north:``$2$1'' south:``$1'' east:``$1'' west:``$2$1''
@@ -151,18 +157,28 @@ block index:`eval($1$2+outersw)' north:``$1'' south:``$2$1'' east:``$1'' west:``
 
 Diagonals.
 
-define( diagonals,
+define( `diagonals',
 block index:`eval($1$2+slash)' north:``$2$1'' south:``$1$2'' east:``$1$2'' west:``$2$1''
 block index:`eval($1$2+backslash)' north:``$1$2'' south:``$2$1'' east:``$2$1'' west:``$1$2'')
 
 All the double transitions.
 
-define( double,
+define( `double',
 `horizontals(`$1',`$2')'
 `verticals(`$1',`$2')'
 `innercorners(`$1',`$2')'
 `outercorners(`$1',`$2')'
 `diagonals(`$1',`$2')')
+
+This is a helper for 4-block specials. The second parameter defines what terrain the special is embedded in.
+
+define( `special',
+block index:`eval($1+0x00)' north:``$2'' south:``$1west'' east:``$1north'' west:``$2''
+block index:`eval($1+0x01)' north:``$2'' south:``$1east'' east:``$2'' west:``$1north''
+block index:`eval($1+0x10)' north:``$1west'' south:``$2'' east:``$1south'' west:``$2''
+block index:`eval($1+0x11)' north:``$1east'' south:``$2'' east:``$2'' west:``$1south'')
+
+I didn't bother with a helper for the 1-block cave special; it was simpler to just directly code it.
 
 Now for the actual block definitions.
 
@@ -188,3 +204,5 @@ double(`grass', `trees')
 double(`water', `sand')
 double(`water', `trees')
 double(`sand',  `trees')
+special(`house', `dirt')
+block index:eval(cave) north:`rock' south:`dirt' east:`rockdirt' west:`rockdirt'
