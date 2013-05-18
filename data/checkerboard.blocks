@@ -1,2 +1,2 @@
-block 0 n:white s:black e:white w:black
-block 1 n:black s:white e:black w:white
+block index:0 north:white south:black east:white west:black
+block index:1 north:black south:white east:black west:white

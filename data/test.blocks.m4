@@ -33,10 +33,10 @@ define(`watertrees', 0xe0)
 define(`sandtrees',  0xf0)
 
 Double-terrain interactions.
-define(`north',     0x00) Two terrains, horizontal, lower on north.
-define(`south',     0x01) Two terrains, horizontal, lower on south.
-define(`east',      0x02) Two terrains, vertical, lower on east.
-define(`west',      0x03) Two terrains, vertical, lower on west.
+define(`vertnorth', 0x00) Two terrains, vertical, lower on north.
+define(`vertsouth', 0x01) Two terrains, vertical, lower on south.
+define(`horizeast', 0x02) Two terrains, horizontal, lower on east.
+define(`horizwest', 0x03) Two terrains, horizontal, lower on west.
 
 define(`innerne',   0x04) Two terrains, inner corner, lower on northeast.
 define(`innerse',   0x05) Two terrains, inner corner, lower on southeast.
@@ -53,7 +53,7 @@ define(`backslash', 0x0d) Two terrains, diagonal, lower on southeast and northwe
 
 For double-terrain interactions, use offset+interaction.
 
-This gives us a block map that looks like this:
+This gives us a block map that looks like thisouth:
 
       0x_0  0x_1  0x_2  0x_3  0x_4  0x_5  0x_6  0x_7  0x_8  0x_9  0x_a  0x_b  0x_c  0x_d  0x_e  0x_f
      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
@@ -114,12 +114,12 @@ We have 40 blocks left over for special stuff, before we have to start sacrifici
 Solid blocks.
 
 define( solid,
-block `eval($1)' n:``$1'' s:``$1'' e:``$1'' w:``$1'')
+block index:`eval($1)' north:``$1'' south:``$1'' east:``$1'' west:``$1'')
 
 Double-terrain interactions.
 For these macros, I expect the lower terrain type to be the earlier parameter.
 
-In this blockset, I use the following convention for edge names:
+In this blockset, I use the following convention for edge namesouth:
   If an edge is entirely one terrain, it is named for that terrain.
   If an edge is multiple terrains, they are concatenated in order:
     For vertical edges, from north to south.
@@ -127,33 +127,33 @@ In this blockset, I use the following convention for edge names:
 
 Horizontal/vertical interactions.
 
-define( horizontals,
-block `eval($1$2+north)' n:``$1'' s:``$2'' e:``$1$2'' w:``$1$2''
-block `eval($1$2+south)' n:``$2'' s:``$1'' e:``$2$1'' w:``$2$1'')
-
 define( verticals,
-block `eval($1$2+east)' n:``$2$1'' s:``$2$1'' e:``$1'' w:``$2''
-block `eval($1$2+west)' n:``$1$2'' s:``$1$2'' e:``$2'' w:``$1'')
+block index:`eval($1$2+vertnorth)' north:``$1'' south:``$2'' east:``$1$2'' west:``$1$2''
+block index:`eval($1$2+vertsouth)' north:``$2'' south:``$1'' east:``$2$1'' west:``$2$1'')
+
+define( horizontals,
+block index:`eval($1$2+horizeast)' north:``$2$1'' south:``$2$1'' east:``$1'' west:``$2''
+block index:`eval($1$2+horizwest)' north:``$1$2'' south:``$1$2'' east:``$2'' west:``$1'')
 
 Corners.
 
 define( innercorners,
-block `eval($1$2+innerne)' n:``$2$1'' s:``$2'' e:``$1$2'' w:``$2''
-block `eval($1$2+innerse)' n:``$2'' s:``$2$1'' e:``$2$1'' w:``$2''
-block `eval($1$2+innernw)' n:``$1$2'' s:``$2'' e:``$2'' w:``$1$2''
-block `eval($1$2+innersw)' n:``$2'' s:``$1$2'' e:``$2'' w:``$2$1'')
+block index:`eval($1$2+innerne)' north:``$2$1'' south:``$2'' east:``$1$2'' west:``$2''
+block index:`eval($1$2+innerse)' north:``$2'' south:``$2$1'' east:``$2$1'' west:``$2''
+block index:`eval($1$2+innernw)' north:``$1$2'' south:``$2'' east:``$2'' west:``$1$2''
+block index:`eval($1$2+innersw)' north:``$2'' south:``$1$2'' east:``$2'' west:``$2$1'')
 
 define( outercorners,
-block `eval($1$2+outerne)' n:``$1$2'' s:``$1'' e:``$2$1'' w:``$1''
-block `eval($1$2+outerse)' n:``$1'' s:``$1$2'' e:``$1$2'' w:``$1''
-block `eval($1$2+outernw)' n:``$2$1'' s:``$1'' e:``$1'' w:``$2$1''
-block `eval($1$2+outersw)' n:``$1'' s:``$2$1'' e:``$1'' w:``$1$2'')
+block index:`eval($1$2+outerne)' north:``$1$2'' south:``$1'' east:``$2$1'' west:``$1''
+block index:`eval($1$2+outerse)' north:``$1'' south:``$1$2'' east:``$1$2'' west:``$1''
+block index:`eval($1$2+outernw)' north:``$2$1'' south:``$1'' east:``$1'' west:``$2$1''
+block index:`eval($1$2+outersw)' north:``$1'' south:``$2$1'' east:``$1'' west:``$1$2'')
 
 Diagonals.
 
 define( diagonals,
-block `eval($1$2+slash)' n:``$2$1'' s:``$1$2'' e:``$1$2'' w:``$2$1''
-block `eval($1$2+backslash)' n:``$1$2'' s:``$2$1'' e:``$2$1'' w:``$1$2'')
+block index:`eval($1$2+slash)' north:``$2$1'' south:``$1$2'' east:``$1$2'' west:``$2$1''
+block index:`eval($1$2+backslash)' north:``$1$2'' south:``$2$1'' east:``$2$1'' west:``$1$2'')
 
 All the double transitions.
 
