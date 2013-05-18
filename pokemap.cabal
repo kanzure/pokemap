@@ -17,6 +17,7 @@ executable pokemap
   build-depends:
     array,
     base,
+    bytestring,
     deepseq,
     MonadRandom,
     monads-tf,
