@@ -66,37 +66,37 @@ This gives us a block map that looks like this:
 0x2_ |ROCK-GRASS INTERACTIONS                                                            |           |
      |                                                                                   |           |
      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+           +
-0x3_ |DIRT-GRASS INTERACTIONS                                                            |           |
+0x3_ |ROCK-WATER INTERACTIONS                                                            |           |
      |                                                                                   |           |
      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+           +
-0x4_ |ROCK-WATER INTERACTIONS                                                            |           |
+0x4_ |ROCK-SAND INTERACTIONS                                                             |           |
      |                                                                                   |           |
      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+           +
-0x5_ |DIRT-WATER INTERACTIONS                                                            |           |
+0x5_ |ROCK-TREES INTERACTIONS                                                            |           |
      |                                                                                   |           |
      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+           +
-0x6_ |GRASS-WATER INTERACTIONS                                                           |           |
+0x6_ |DIRT-GRASS INTERACTIONS                                                            |           |
      |                                                                                   |           |
      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+           +
-0x7_ |ROCK-SAND INTERACTIONS                                                             |           |
+0x7_ |DIRT-WATER INTERACTIONS                                                            |           |
      |                                                                                   |           |
      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+           +
 0x8_ |DIRT-SAND INTERACTIONS                                                             |           |
      |                                                                                   |           |
      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+           +
-0x9_ |GRASS-SAND INTERACTIONS                                                            |           |
+0x9_ |DIRT-TREES INTERACTIONS                                                            |           |
      |                                                                                   |           |
      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+           +
-0xa_ |WATER-SAND INTERACTIONS                                                            |           |
+0xa_ |GRASS-WATER INTERACTIONS                                                           |           |
      |                                                                                   |           |
      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+           +
-0xb_ |ROCK-TREES INTERACTIONS                                                            |           |
+0xb_ |GRASS-SAND INTERACTIONS                                                            |           |
      |                                                                                   |           |
      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+           +
-0xc_ |DIRT-TREES INTERACTIONS                                                            |           |
+0xc_ |GRASS-TREES INTERACTIONS                                                           |           |
      |                                                                                   |           |
      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+           +
-0xd_ |GRASS-TREES INTERACTIONS                                                           |           |
+0xd_ |WATER-SAND INTERACTIONS                                                            |           |
      |                                                                                   |           |
      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
 0xe_ |WATER-TREES INTERACTIONS                                                           |HOUSE      |
